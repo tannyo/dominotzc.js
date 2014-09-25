@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Set Domino Timezone</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="dominotzc.js"></script>
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="dominoSetTimezonec.js"></script>
+	<style>
+	h1 {
+		font-weight: 100;
+	}
+	.win h1 {
+		font-weight: 200;
+	}
+	.tab-content {
+		padding-top: 1.4em;
+	}
+	legend label {
+		font-weight: normal;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Set Time Zone</h1>
+				<form action="#" id="tz_form">
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="active" data-value="0"><a href="#browserTimeZone" id="custom-tab" role="tab" data-toggle="tab">Browser</a></li>
+						<li data-value="1"><a href="#custTimeZone" id="custom-tab" role="tab" data-toggle="tab">Custom</a></li>
+						<li data-value="2"><a href="#svrTimeZone" role="tab" data-toggle="tab">Server</a></li>
+					</ul>
+					<div class="tab-content">
+						<div id="browserTimeZone" class="tab-pane active fade in">
+							<p>When the Save button is clicked or tapped, a DomTimeZone cookie will be created for the <strong id="browser-timezone"></strong> time zone. All local dates displayed by the server will be in your browser's time zone.</p>
+						</div>
+
+						<div id="custTimeZone" class="tab-pane fade">
+							<p>When the Save button is clicked or tapped, a DomTimeZone cookie will be created for your time zone. All local dates displayed by the server will be in your selected time zone.</p>
+							<fieldset>
+								<legend><label for="tz_zone">Time Zone</label></legend>
+								<div class="form-group">
+									<!-- <label for="tz_zone">Time zone:</label> -->
+									<select name="tz_zone" id="tz_zone" class="form-control">
+									</select>
+								</div>
+							</fieldset>
+							<fieldset class="form-group radio">
+								<legend for="tz_dst">Daylight saving time:</legend>
+								<label><input type="radio" name="tz_dst" value="0"> Not Observed</label><br>
+								<label><input type="radio" name="tz_dst" value="1"> Observed</label>
+							</fieldset>
+						</div>
+
+						<div class="tab-pane fade" id="svrTimeZone">
+							<p>When the Save button is clicked or tapped, the DomTimeZone cookie will be removed and all local dates will be displayed using the Domino server's time zone.</p>
+						</div>
+					</div>
+
+					<p class="form-group">Note: <span id="domain">Time zone preferences apply to </span></p>
+					<p><button type="submit" id="tz_submit" class="btn btn-primary">Save</button></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

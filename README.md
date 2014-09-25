@@ -2,9 +2,9 @@
 
 Automatically calculate the domino timezone cookie for the user's timezone or get, set, or remove timezone info.
 
-At a previous job I programmed web applications on a IBM Domino server. I needed to display dates and times in the user's timezone. By default the Domino server will use the server timezone to display dates and times on the web. You can have the user go to a preferences website at server-domain//$Preferences.nsf. This will allow users to set their timezone and regional preferences. I believe that the Domino preferences website was written in 2002 using the technology available from 1998. It is a website that uses frames, tables, and many JavaScript functions that pollute the global namespace.
+At a previous job I programmed web applications on a IBM Domino server. I needed to display dates and times in the user's timezone. By default the Domino server will use the server timezone to display dates and times on the web. You can have the user go to a preferences website at server-domain//$Preferences.nsf. This will allow users to set their timezone and regional preferences. I believe that the Domino preferences website was written in 2002 using the technology available from 1998. It is a website that uses frames, tables, and many JavaScript functions that pollute the global namespace. Not exactly pretty.
 
-I needed a method to automatically set the user's timezone based on the browser settings. I borrowed a few date calculation functions from Andrew Urquhart that enabled the program to calculate a key based on when DST started and ended, and the timezone offset from UTC time and local time. With this key the program could lookup the Domino Timezone Entries array and using Domino functions, set the Domino Timezone cookie. This still left the problem of Domino JavaScript functions poluting the global namespace. It was dirty, but it worked.
+I needed a method to automatically set the user's timezone based on the browser settings. I borrowed a few date calculation functions written in 2004 by [Andrew Urquhart](http://andrewu.co.uk/clj/timezone/) that enabled the program to calculate a key based on when DST started and ended, and the timezone offset from UTC time and local time. With this calculated key the program could lookup the user's timezone in the Domino Timezone Entries array and using Domino functions, set the Domino Timezone cookie. This still left the problem of Domino JavaScript functions poluting the global namespace. It was dirty, but it worked.
 
 A refactoring of the code allows the Domino Timezone Entries array (tzEntries) and needed Domnino functions to be put in a private name space. The new code allows you to set the cookie to a calculated value or create your own preference form to set the cookie.
 
@@ -85,7 +85,7 @@ Support routines for dominoSetTimezonec.html.
 
 ## Notes
 
-If you want the file to just set the Domino Timezone cookie from the browser calculated value, uncomment the last line in the dominotzc.js file or from your JavaScript code, call:
+If you want the file to just set the Domino Timezone cookie from the browser's calculated value, uncomment the last line in the dominotzc.js file or from your JavaScript code, call:
 
 ```javascript
 dominoTimezone.set();
